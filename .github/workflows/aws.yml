@@ -2,7 +2,7 @@ name: Deploy to ECR
  
 on:
   push:
-    branches: [main]
+    branches: [master]
  
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
  
       - name: Build, tag, and push image to Amazon ECR
         env:
-          ECR_REGISTRY: codekiddy1
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: javarepo
           IMAGE_TAG: latest
         run: |
